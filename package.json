@@ -1,0 +1,22 @@
+{
+  "name": "cors",
+  "version": "0.0.1",
+  "description": "cross-origin resource sharing middleware",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathanfaucett/cors.git"
+  },
+  "main": "src/index.js",
+  "keywords": [
+    "cors",
+    "cors.js"
+  ],
+  "author": "Nathan Faucett",
+  "license": "BSD-2-Clause",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "",
+    "grunt-jsbeautifier": ""
+  }
+}
+
