@@ -1,4 +1,4 @@
-EJS
+Cors
 =======
 
-ejs for the browser and node.js
+cross-origin resource sharing middleware
