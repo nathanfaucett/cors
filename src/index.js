@@ -9,7 +9,7 @@ function Cors(opts) {
     this.maxAge = !!opts.maxAge ? opts.maxAge.toString() : null;
 }
 
-Cors.prototype.express = function(opts) {
+Cors.express = function(opts) {
     var cors = new Cors(opts);
 
     return function(req, res, next) {
@@ -18,7 +18,7 @@ Cors.prototype.express = function(opts) {
     };
 };
 
-Cors.prototype.connect = Cors.prototype.express;
+Cors.connect = Cors.express;
 
 Cors.prototype.middleware = function(req, res, next) {
     var headers = this.allowedHeaders || req.headers["access-control-request-headers"];
