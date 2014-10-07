@@ -1,11 +1,14 @@
+var type = require("type");
+
+
 function Cors(opts) {
     opts || (opts = {});
 
-    this.origin = typeof(opts.origin) === "string" ? opts.origin : "*";
-    this.methods = typeof(opts.methods) === "string" ? opts.methods : (opts.methods && opts.methods.length ? opts.methods.join(",") : "GET,POST,PUT,PATCH,HEAD,DELETE");
-    this.credentials = !!opts.credentials ? "true" : "false";
-    this.allowedHeaders = typeof(opts.allowedHeaders) === "string" ? opts.allowedHeaders : (opts.allowedHeaders && opts.allowedHeaders.length ? opts.allowedHeaders.join(",") : null);
-    this.exposedHeaders = typeof(opts.exposedHeaders) === "string" ? opts.exposedHeaders : (opts.exposedHeaders && opts.exposedHeaders.length ? opts.exposedHeaders.join(",") : null);
+    this.origin = type.isString(opts.origin) ? opts.origin : "*";
+    this.methods = type.isString(opts.methods) ? opts.methods : (opts.methods && opts.methods.length ? opts.methods.join(",") : "GET,POST,PUT,PATCH,HEAD,DELETE");
+    this.credentials = opts.credentials === true ? "true" : "false";
+    this.allowedHeaders = type.isString(opts.allowedHeaders) ? opts.allowedHeaders : (opts.allowedHeaders && opts.allowedHeaders.length ? opts.allowedHeaders.join(",") : null);
+    this.exposedHeaders = type.isString(opts.exposedHeaders) ? opts.exposedHeaders : (opts.exposedHeaders && opts.exposedHeaders.length ? opts.exposedHeaders.join(",") : null);
     this.maxAge = !!opts.maxAge ? opts.maxAge.toString() : null;
 }
 
