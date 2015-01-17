@@ -1,14 +1,14 @@
-var type = require("type");
+var isString = require("is_string");
 
 
 function Cors(opts) {
     opts || (opts = {});
 
-    this.origin = type.isString(opts.origin) ? opts.origin : "*";
-    this.methods = type.isString(opts.methods) ? opts.methods : (opts.methods && opts.methods.length ? opts.methods.join(",") : "GET,POST,PUT,PATCH,HEAD,DELETE");
+    this.origin = isString(opts.origin) ? opts.origin : "*";
+    this.methods = isString(opts.methods) ? opts.methods : (opts.methods && opts.methods.length ? opts.methods.join(",") : "GET,POST,PUT,PATCH,HEAD,DELETE");
     this.credentials = opts.credentials === true ? "true" : "false";
-    this.allowedHeaders = type.isString(opts.allowedHeaders) ? opts.allowedHeaders : (opts.allowedHeaders && opts.allowedHeaders.length ? opts.allowedHeaders.join(",") : null);
-    this.exposedHeaders = type.isString(opts.exposedHeaders) ? opts.exposedHeaders : (opts.exposedHeaders && opts.exposedHeaders.length ? opts.exposedHeaders.join(",") : null);
+    this.allowedHeaders = isString(opts.allowedHeaders) ? opts.allowedHeaders : (opts.allowedHeaders && opts.allowedHeaders.length ? opts.allowedHeaders.join(",") : null);
+    this.exposedHeaders = isString(opts.exposedHeaders) ? opts.exposedHeaders : (opts.exposedHeaders && opts.exposedHeaders.length ? opts.exposedHeaders.join(",") : null);
     this.maxAge = !!opts.maxAge ? opts.maxAge.toString() : null;
 }
 
@@ -30,15 +30,26 @@ Cors.prototype.middleware = function(req, res, next) {
         res.setHeader("Access-Control-Allow-Origin", this.origin);
         res.setHeader("Access-Control-Allow-Methods", this.methods);
         res.setHeader("Access-Control-Allow-Credentials", this.credentials);
-        if (headers) res.setHeader("Access-Control-Allow-Headers", headers);
-        if (this.exposedHeaders) res.setHeader("Access-Control-Expose-Headers", this.exposedHeaders);
-        if (this.maxAge) res.setHeader("Access-Control-Max-Age", this.maxAge);
+
+        if (headers) {
+            res.setHeader("Access-Control-Allow-Headers", headers);
+        }
+        if (this.exposedHeaders) {
+            res.setHeader("Access-Control-Expose-Headers", this.exposedHeaders);
+        }
+        if (this.maxAge) {
+            res.setHeader("Access-Control-Max-Age", this.maxAge);
+        }
+
         res.statusCode = 204;
         res.end();
     } else {
         res.setHeader("Access-Control-Allow-Origin", this.origin);
         res.setHeader("Access-Control-Allow-Credentials", this.credentials);
-        if (this.exposedHeaders) res.setHeader("Access-Control-Expose-Headers", this.exposedHeaders);
+
+        if (this.exposedHeaders) {
+            res.setHeader("Access-Control-Expose-Headers", this.exposedHeaders);
+        }
     }
 
     next();

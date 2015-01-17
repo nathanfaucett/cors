@@ -20,7 +20,7 @@
     "grunt-jsbeautifier": ""
   },
   "dependencies": {
-    "type": "nathanfaucett/type"
+    "is_string": "nathanfaucett/is_string"
   }
 }
 
