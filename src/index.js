@@ -1,8 +1,11 @@
 var isString = require("is_string");
 
 
+module.exports = Cors;
+
+
 function Cors(opts) {
-    opts || (opts = {});
+    opts = opts || {};
 
     this.origin = isString(opts.origin) ? opts.origin : "*";
     this.methods = isString(opts.methods) ? opts.methods : (opts.methods && opts.methods.length ? opts.methods.join(",") : "GET,POST,PUT,PATCH,HEAD,DELETE");
@@ -16,7 +19,6 @@ Cors.express = function(opts) {
     var cors = new Cors(opts);
 
     return function(req, res, next) {
-
         cors.middleware(req, res, next);
     };
 };
@@ -54,6 +56,3 @@ Cors.prototype.middleware = function(req, res, next) {
 
     next();
 };
-
-
-module.exports = Cors;
