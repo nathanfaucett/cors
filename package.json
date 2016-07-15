@@ -1,5 +1,5 @@
 {
-  "name": "cors",
+  "name": "@nathanfaucett/cors",
   "version": "0.0.1",
   "description": "cross-origin resource sharing middleware",
   "repository": {
@@ -15,11 +15,11 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.11.3",
-    "grunt-jsbeautifier": "^0.2.10"
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-jsbeautifier": "^0.2.13"
   },
   "dependencies": {
-    "is_string": "git://github.com/nathanfaucett/is_string.git"
+    "@nathanfaucett/is_string": "^0.0.1"
   }
 }
